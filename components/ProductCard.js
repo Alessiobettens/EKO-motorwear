@@ -1,8 +1,8 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, onPress }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <Image
         source={{
           uri: product.fieldData.afbeelding.url,
@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
       <Text style={styles.name}>{product.fieldData.name}</Text>
 
       <Text style={styles.price}>€ {product.fieldData.prijs}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
 

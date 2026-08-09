@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 
 import ProductCard from "../components/ProductCard";
 
-export default function ProductenScreen() {
+export default function ProductenScreen({ navigation }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -41,7 +41,16 @@ export default function ProductenScreen() {
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => (
+          <ProductCard
+            product={item}
+            onPress={() =>
+              navigation.navigate("ProductDetails", {
+                product: item,
+              })
+            }
+          />
+        )}
       />
     </View>
   );

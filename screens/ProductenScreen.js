@@ -6,6 +6,9 @@ import {
   StyleSheet,
 } from "react-native";
 
+import ProductCard from "../components/ProductCard";
+
+
 export default function ProductenScreen() {
   const [products, setProducts] = useState([]);
 
@@ -41,9 +44,7 @@ export default function ProductenScreen() {
         data={products}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Text style={styles.productName}>
-            {item.fieldData.name}
-          </Text>
+          <ProductCard product={item} />
         )}
       />
     </View>

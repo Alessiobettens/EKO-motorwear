@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, TextInput, StyleSheet } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 
 import ProductCard from "../components/ProductCard";
 
 export default function ProductenScreen({ navigation }) {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
     getProducts();
@@ -26,20 +28,43 @@ export default function ProductenScreen({ navigation }) {
 
       const data = await response.json();
 
-      console.log(data);
-
-      console.log(data.items[0].fieldData);
       setProducts(data.items);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(products[0]);
-
   const filteredProducts = products.filter((product) =>
     product.fieldData.name.toLowerCase().includes(search.toLowerCase()),
   );
+
+  const sortedProducts = [...filteredProducts];
+
+  switch (sortOption) {
+    case "price-low-high":
+      sortedProducts.sort(
+        (a, b) => parseFloat(a.fieldData.prijs) - parseFloat(b.fieldData.prijs),
+      );
+      break;
+
+    case "price-high-low":
+      sortedProducts.sort(
+        (a, b) => parseFloat(b.fieldData.prijs) - parseFloat(a.fieldData.prijs),
+      );
+      break;
+
+    case "name-az":
+      sortedProducts.sort((a, b) =>
+        a.fieldData.name.localeCompare(b.fieldData.name),
+      );
+      break;
+
+    case "name-za":
+      sortedProducts.sort((a, b) =>
+        b.fieldData.name.localeCompare(a.fieldData.name),
+      );
+      break;
+  }
 
   return (
     <View style={styles.container}>
@@ -55,8 +80,24 @@ export default function ProductenScreen({ navigation }) {
           borderRadius: 10,
         }}
       />
+
+      <Picker
+        selectedValue={sortOption}
+        onValueChange={(value) => setSortOption(value)}
+      >
+        <Picker.Item label="Sorteer..." value="" />
+
+        <Picker.Item label="Prijs laag → hoog" value="price-low-high" />
+
+        <Picker.Item label="Prijs hoog → laag" value="price-high-low" />
+
+        <Picker.Item label="Naam A → Z" value="name-az" />
+
+        <Picker.Item label="Naam Z → A" value="name-za" />
+      </Picker>
+
       <FlatList
-        data={filteredProducts}
+        data={sortedProducts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <ProductCard

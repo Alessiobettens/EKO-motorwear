@@ -5,10 +5,10 @@ export default function BlogDetailScreen({ route }) {
 
   return (
     <ScrollView style={styles.container}>
-      {blog.fieldData.image?.[0] && (
+      {blog.fieldData["main-image"] && (
         <Image
           source={{
-            uri: blog.fieldData.image[0].url,
+            uri: blog.fieldData["main-image"]?.url,
           }}
           style={styles.image}
         />

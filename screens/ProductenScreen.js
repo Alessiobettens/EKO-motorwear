@@ -4,9 +4,19 @@ import { Picker } from "@react-native-picker/picker";
 
 import ProductCard from "../components/ProductCard";
 
+const categories = {
+  "6a622557d733a268ac93e1c1": "Accessoires",
+  "6a622549c22620ebba234eda": "Bagage",
+  "6a62253739b1daa69db6a99b": "Laarzen",
+  "6a62216946ce5cef5a78068e": "Handschoenen",
+  "6a5e481ca21026eeeeb2bb64": "Kledij",
+  "6a5e3ec1101dc939517c457d": "Motorhelmen",
+};
+
 export default function ProductenScreen({ navigation }) {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Alle");
   const [sortOption, setSortOption] = useState("");
 
   useEffect(() => {
@@ -34,9 +44,20 @@ export default function ProductenScreen({ navigation }) {
     }
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.fieldData.name.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.fieldData.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const categoryId = product.fieldData.category?.[0];
+
+    const categoryName = categories[categoryId];
+
+    const matchesCategory =
+      selectedCategory === "Alle" || categoryName === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
 
   const sortedProducts = [...filteredProducts];
 
@@ -80,6 +101,19 @@ export default function ProductenScreen({ navigation }) {
           borderRadius: 10,
         }}
       />
+
+      <Picker
+        selectedValue={selectedCategory}
+        onValueChange={(itemValue) => setSelectedCategory(itemValue)}
+      >
+        <Picker.Item label="Alle" value="Alle" />
+        <Picker.Item label="Accessoires" value="Accessoires" />
+        <Picker.Item label="Bagage" value="Bagage" />
+        <Picker.Item label="Laarzen" value="Laarzen" />
+        <Picker.Item label="Handschoenen" value="Handschoenen" />
+        <Picker.Item label="Kledij" value="Kledij" />
+        <Picker.Item label="Motorhelmen" value="Motorhelmen" />
+      </Picker>
 
       <Picker
         selectedValue={sortOption}

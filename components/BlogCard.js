@@ -1,18 +1,20 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function BlogCard({ blog, onPress }) {
+  console.log(blog.fieldData);
+
   return (
     <TouchableOpacity style={styles.card} onPress={onPress}>
-      {blog.fieldData.afbeelding && (
+      {blog.fieldData["main-image"] && (
         <Image
           source={{
-            uri: blog.fieldData.afbeelding.url,
+            uri: blog.fieldData["main-image"]?.url,
           }}
           style={styles.image}
         />
       )}
 
-      <Text style={styles.title}>{blog.fieldData.name}</Text>
+      <Text style={styles.title}>{blog.fieldData.titel}</Text>
     </TouchableOpacity>
   );
 }

@@ -16,15 +16,12 @@ export default function BlogScreen({ navigation }) {
         "https://api.webflow.com/v2/collections/6a70a789e71cc80ac8866f7b/items",
         {
           headers: {
-            Authorization:
-              "Bearer 450ac81e27737ff9e1f75408ddd86f36ebdeb5c3bcbec7817c2ca2daad3f8b93",
-            accept: "application/json",
+            Authorization: "Bearer 450ac81e27737ff9e1f75408ddd86f36ebdeb5c3bcbec7817c2ca2daad3f8b93",
           },
         },
       );
 
       const data = await response.json();
-
       setBlogs(data.items);
     } catch (error) {
       console.log(error);

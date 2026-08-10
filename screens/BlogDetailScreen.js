@@ -5,18 +5,18 @@ export default function BlogDetailScreen({ route }) {
 
   return (
     <ScrollView style={styles.container}>
-      {blog.fieldData.afbeelding && (
+      {blog.fieldData.image?.[0] && (
         <Image
           source={{
-            uri: blog.fieldData.afbeelding.url,
+            uri: blog.fieldData.image[0].url,
           }}
           style={styles.image}
         />
       )}
 
-      <Text style={styles.title}>{blog.fieldData.name}</Text>
+      <Text style={styles.title}>{blog.fieldData.titel}</Text>
 
-      <Text style={styles.content}>{blog.fieldData.description}</Text>
+      <Text style={styles.content}>{blog.fieldData["tekst-1"]}</Text>
     </ScrollView>
   );
 }

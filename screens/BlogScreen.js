@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList } from "react-native";
 
-export default function BlogScreen() {
+import BlogCard from "../components/BlogCard";
+
+export default function BlogScreen({ navigation }) {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -34,7 +36,16 @@ export default function BlogScreen() {
       <FlatList
         data={blogs}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text>{item.fieldData.name}</Text>}
+        renderItem={({ item }) => (
+          <BlogCard
+            blog={item}
+            onPress={() =>
+              navigation.navigate("BlogDetails", {
+                blog: item,
+              })
+            }
+          />
+        )}
       />
     </View>
   );

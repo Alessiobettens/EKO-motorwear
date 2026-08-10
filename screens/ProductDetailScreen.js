@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import {
-  View,
+  ScrollView,
   Text,
   Image,
-  Button,
+  View,
+  Pressable,
   StyleSheet,
-  ScrollView,
 } from "react-native";
 
 export default function ProductDetailScreen({ route }) {
@@ -13,7 +13,19 @@ export default function ProductDetailScreen({ route }) {
 
   const [quantity, setQuantity] = useState(1);
 
-  const totalPrice = parseFloat(product.fieldData.prijs) * quantity;
+  const price = parseFloat(product.fieldData.prijs);
+
+  const totalPrice = price * quantity;
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -26,24 +38,25 @@ export default function ProductDetailScreen({ route }) {
 
       <Text style={styles.title}>{product.fieldData.name}</Text>
 
-      <Text style={styles.price}>€ {product.fieldData.prijs}</Text>
+      <Text style={styles.price}>€ {price.toFixed(2)}</Text>
 
       <Text style={styles.description}>{product.fieldData.description}</Text>
 
-      <Text style={styles.quantity}>Aantal: {quantity}</Text>
+      <View style={styles.counterContainer}>
+        <Pressable style={styles.button} onPress={decreaseQuantity}>
+          <Text style={styles.buttonText}>-</Text>
+        </Pressable>
 
-      <Button title="+" onPress={() => setQuantity(quantity + 1)} />
+        <Text style={styles.quantity}>{quantity}</Text>
 
-      <Button
-        title="-"
-        onPress={() => {
-          if (quantity > 1) {
-            setQuantity(quantity - 1);
-          }
-        }}
-      />
+        <Pressable style={styles.button} onPress={increaseQuantity}>
+          <Text style={styles.buttonText}>+</Text>
+        </Pressable>
+      </View>
 
-      <Text style={styles.total}>Totale prijs: € {totalPrice.toFixed(2)}</Text>
+      <Text style={styles.totalPrice}>
+        Totale prijs: € {totalPrice.toFixed(2)}
+      </Text>
     </ScrollView>
   );
 }
@@ -69,22 +82,45 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
     color: "green",
-    marginVertical: 10,
+    marginTop: 10,
   },
 
   description: {
     fontSize: 16,
+    marginTop: 15,
     lineHeight: 24,
   },
 
-  quantity: {
-    fontSize: 18,
-    marginTop: 20,
+  counterContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 25,
   },
 
-  total: {
+  button: {
+    backgroundColor: "#ff6600",
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+
+  buttonText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+
+  quantity: {
+    fontSize: 20,
+    marginHorizontal: 20,
+    fontWeight: "bold",
+  },
+
+  totalPrice: {
     fontSize: 22,
     fontWeight: "bold",
-    marginTop: 20,
+    marginTop: 25,
   },
 });

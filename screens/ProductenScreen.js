@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, TextInput, StyleSheet } from "react-native";
 
 import ProductCard from "../components/ProductCard";
 
 export default function ProductenScreen({ navigation }) {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getProducts();
@@ -36,10 +37,26 @@ export default function ProductenScreen({ navigation }) {
 
   console.log(products[0]);
 
+  const filteredProducts = products.filter((product) =>
+    product.fieldData.name.toLowerCase().includes(search.toLowerCase()),
+  );
+
   return (
     <View style={styles.container}>
+      <TextInput
+        placeholder="Zoek een product..."
+        value={search}
+        onChangeText={setSearch}
+        style={{
+          borderWidth: 1,
+          borderColor: "#ccc",
+          padding: 10,
+          marginBottom: 10,
+          borderRadius: 10,
+        }}
+      />
       <FlatList
-        data={products}
+        data={filteredProducts}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <ProductCard

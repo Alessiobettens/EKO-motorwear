@@ -1,19 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ImageBackground } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <ImageBackground source={require("../assets/moto.jpg")} style={styles.hero}>
       <Text style={styles.title}>EKO MOTORWEAR</Text>
 
       <Text style={styles.subtitle}>Motoruitrusting voor elke rit</Text>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  hero: {
+    width: "100%",
+    height: 300,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -21,10 +22,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "bold",
+    color: "white",
   },
 
   subtitle: {
     fontSize: 16,
     marginTop: 10,
+    color: "white",
   },
 });

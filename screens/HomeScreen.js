@@ -65,7 +65,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.subtitle}>Motoruitrusting voor elke rit</Text>
       </ImageBackground>
 
-      <Text style={styles.sectionTitle}>Shop Categorieën</Text>
+      <Text style={styles.sectionTitle}>Populaire categorieën</Text>
 
       <ScrollView
         horizontal

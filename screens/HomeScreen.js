@@ -98,11 +98,7 @@ export default function HomeScreen({ navigation }) {
           <Pressable
             key={blog.id}
             style={styles.blogCard}
-            onPress={() =>
-              navigation.navigate("BlogDetails", {
-                blog,
-              })
-            }
+            onPress={() => navigation.navigate("Blog")}
           >
             <Image
               source={{

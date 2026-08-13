@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../screens/HomeScreen";
 import ProductStack from "./ProductStack";
 import BlogStack from "./BlogStack";
-import AboutScreen from "../screens/AboutScreen";
+import ServiceScreen from "../screens/ServiceScreen";
 import GameScreen from "../screens/GameScreen";
 
 const Tab = createBottomTabNavigator();
@@ -15,9 +15,16 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          headerShown: false,
+          headerShown: false, // Hide the header for all screens
           tabBarActiveTintColor: "#efd541",
-          tabBarInactiveTintColor: "gray",
+          tabBarInactiveTintColor: "white",
+
+          tabBarStyle: {
+            backgroundColor: "#212121",
+            borderTopWidth: 0,
+            elevation: 0,
+          },
+
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
@@ -25,12 +32,12 @@ export default function AppNavigator() {
               iconName = "home";
             } else if (route.name === "Winkel") {
               iconName = "cart";
-            } else if (route.name === "Blog") {
-              iconName = "newspaper";
-            } else if (route.name === "About") {
-              iconName = "information-circle";
             } else if (route.name === "Game") {
               iconName = "game-controller";
+            } else if (route.name === "Blog") {
+              iconName = "newspaper";
+            } else if (route.name === "Service") {
+              iconName = "construct";
             }
 
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -41,11 +48,11 @@ export default function AppNavigator() {
 
         <Tab.Screen name="Winkel" component={ProductStack} />
 
+        <Tab.Screen name="Game" component={GameScreen} />
+
         <Tab.Screen name="Blog" component={BlogStack} />
 
-        <Tab.Screen name="About" component={AboutScreen} />
-
-        <Tab.Screen name="Game" component={GameScreen} />
+        <Tab.Screen name="Service" component={ServiceScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -29,6 +29,31 @@ const categories = [
 ];
 
 export default function HomeScreen({ navigation }) {
+  const [blogs, setBlogs] = useState([]);
+  useEffect(() => {
+    getBlogs();
+  }, []);
+
+  const getBlogs = async () => {
+    try {
+      const response = await fetch(
+        "https://api.webflow.com/v2/collections/6a70a789e71cc80ac8866f7b/items",
+        {
+          headers: {
+            Authorization:
+              "Bearer 450ac81e27737ff9e1f75408ddd86f36ebdeb5c3bcbec7817c2ca2daad3f8b93",
+          },
+        },
+      );
+
+      const data = await response.json();
+
+      setBlogs(data.items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ScrollView>
       <ImageBackground
@@ -57,6 +82,37 @@ export default function HomeScreen({ navigation }) {
 
             <View style={styles.overlay}>
               <Text style={styles.categoryTitle}>{category.name}</Text>
+            </View>
+          </Pressable>
+        ))}
+      </ScrollView>
+
+      <Text style={styles.sectionTitle}>Laatste blogs</Text>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoriesContainer}
+      >
+        {blogs.slice(0, 3).map((blog) => (
+          <Pressable
+            key={blog.id}
+            style={styles.blogCard}
+            onPress={() =>
+              navigation.navigate("BlogDetails", {
+                blog,
+              })
+            }
+          >
+            <Image
+              source={{
+                uri: blog.fieldData["main-image"]?.url,
+              }}
+              style={styles.blogImage}
+            />
+
+            <View style={styles.overlay}>
+              <Text style={styles.blogTitle}>{blog.fieldData.titel}</Text>
             </View>
           </Pressable>
         ))}
@@ -125,5 +181,26 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+  },
+
+  blogCard: {
+    width: 250,
+    height: 140,
+    marginRight: 15,
+    borderRadius: 10,
+    overflow: "hidden",
+  },
+
+  blogImage: {
+    width: "100%",
+    height: "100%",
+  },
+
+  blogTitle: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingHorizontal: 10,
   },
 });

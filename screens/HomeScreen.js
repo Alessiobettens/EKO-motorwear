@@ -76,7 +76,7 @@ export default function HomeScreen({ navigation }) {
           <Pressable
             key={category.name}
             style={styles.categoryCard}
-            onPress={() => navigation.navigate("Producten")}
+            onPress={() => navigation.navigate("Winkel")}
           >
             <Image source={category.image} style={styles.categoryImage} />
 

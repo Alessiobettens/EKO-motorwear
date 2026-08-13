@@ -5,37 +5,30 @@ import {
   StyleSheet,
   ScrollView,
   ImageBackground,
+  Image,
+  Pressable,
 } from "react-native";
 
-import ProductCard from "../components/ProductCard";
+const categories = [
+  {
+    name: "Motorhelmen",
+    image: require("../assets/helm.jpg"),
+  },
+  {
+    name: "Kledij",
+    image: require("../assets/kledij.jpg"),
+  },
+  {
+    name: "Handschoenen",
+    image: require("../assets/handschoenen.jpg"),
+  },
+  {
+    name: "Laarzen",
+    image: require("../assets/laarzen.jpg"),
+  },
+];
 
-export default function HomeScreen() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const getProducts = async () => {
-    try {
-      const response = await fetch(
-        "https://api.webflow.com/v2/collections/6a5bbd773a372fa8a1b71610/items",
-        {
-          headers: {
-            Authorization:
-              "Bearer 450ac81e27737ff9e1f75408ddd86f36ebdeb5c3bcbec7817c2ca2daad3f8b93",
-          },
-        },
-      );
-
-      const data = await response.json();
-
-      setProducts(data.items);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+export default function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <ImageBackground
@@ -45,13 +38,27 @@ export default function HomeScreen() {
         <Text style={styles.title}>EKO MOTORWEAR</Text>
 
         <Text style={styles.subtitle}>Motoruitrusting voor elke rit</Text>
+
+        <Text style={styles.sectionTitle}>Onze Shop Categorieën</Text>
       </ImageBackground>
 
-      <Text style={styles.sectionTitle}>Uitgelichte producten</Text>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.categoriesContainer}
+      >
+        {categories.map((category) => (
+          <Pressable
+            key={category.name}
+            style={styles.categoryCard}
+            onPress={() => navigation.navigate("Producten")}
+          >
+            <Image source={category.image} style={styles.categoryImage} />
 
-      {products.slice(0, 4).map((product) => (
-        <ProductCard key={product.id} product={product} onPress={() => {}} />
-      ))}
+            <Text style={styles.categoryTitle}>{category.name}</Text>
+          </Pressable>
+        ))}
+      </ScrollView>
     </ScrollView>
   );
 }
@@ -82,5 +89,26 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
     paddingHorizontal: 10,
+  },
+
+  categoriesContainer: {
+    paddingHorizontal: 10,
+  },
+
+  categoryCard: {
+    width: 180,
+    marginRight: 15,
+  },
+
+  categoryImage: {
+    width: "100%",
+    height: 175,
+    borderRadius: 10,
+  },
+
+  categoryTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    marginTop: 5,
   },
 });

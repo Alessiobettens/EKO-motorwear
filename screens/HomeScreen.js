@@ -65,7 +65,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.subtitle}>Motoruitrusting voor elke rit</Text>
       </ImageBackground>
 
-      <Text style={styles.sectionTitle}>Onze Shop Categorieën</Text>
+      <Text style={styles.sectionTitle}>Shop Categorieën</Text>
 
       <ScrollView
         horizontal
@@ -86,6 +86,34 @@ export default function HomeScreen({ navigation }) {
           </Pressable>
         ))}
       </ScrollView>
+
+      <View style={styles.infoSection}>
+        <Text style={styles.infoTitle}>
+          De grootste motorkledingwinkel van België
+        </Text>
+
+        <Text style={styles.infoSubtitle}>
+          Motorkleding winkel EKO Motorwear: uw speciaalzaak in motorkleding
+        </Text>
+
+        <Text style={styles.infoText}>
+          Met meer dan 30 jaar ervaring en een winkeloppervlakte van 3000 m² is
+          EKO Motorwear uitgegroeid tot één van de grootste motorkledingwinkels
+          van België. In onze winkel en webshop vindt u een uitgebreid
+          assortiment motorkleding en accessoires voor zowel beginnende als
+          ervaren motorrijders.
+        </Text>
+
+        <Text style={styles.hoursTitle}>Openingsuren</Text>
+
+        <Text style={styles.hoursText}>
+          Maandag t.e.m. vrijdag: 09:00 - 18:00
+        </Text>
+
+        <Text style={styles.hoursText}>Zaterdag: 10:00 - 18:00</Text>
+
+        <Text style={styles.hoursText}>Zondag: Gesloten</Text>
+      </View>
 
       <Text style={styles.sectionTitle}>Laatste blogs</Text>
 
@@ -179,6 +207,51 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
+  infoSection: {
+    backgroundColor: "#3a3737",
+    margin: 15,
+    padding: 20,
+    borderRadius: 10,
+  },
+
+  infoTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "white",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+
+  infoSubtitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#efd541",
+    textAlign: "center",
+    marginBottom: 15,
+  },
+
+  infoText: {
+    color: "white",
+    lineHeight: 24,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+
+  hoursTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#efd541",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+
+  hoursText: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 16,
+  },
+
+  ///* Blog styles*///
   blogCard: {
     width: 250,
     height: 140,

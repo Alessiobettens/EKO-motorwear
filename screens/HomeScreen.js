@@ -38,9 +38,9 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.title}>EKO MOTORWEAR</Text>
 
         <Text style={styles.subtitle}>Motoruitrusting voor elke rit</Text>
-
-        <Text style={styles.sectionTitle}>Onze Shop Categorieën</Text>
       </ImageBackground>
+
+      <Text style={styles.sectionTitle}>Onze Shop Categorieën</Text>
 
       <ScrollView
         horizontal
@@ -55,7 +55,9 @@ export default function HomeScreen({ navigation }) {
           >
             <Image source={category.image} style={styles.categoryImage} />
 
-            <Text style={styles.categoryTitle}>{category.name}</Text>
+            <View style={styles.overlay}>
+              <Text style={styles.categoryTitle}>{category.name}</Text>
+            </View>
           </Pressable>
         ))}
       </ScrollView>
@@ -97,18 +99,31 @@ const styles = StyleSheet.create({
 
   categoryCard: {
     width: 180,
+    height: 120,
     marginRight: 15,
+    borderRadius: 10,
+    overflow: "hidden",
   },
 
   categoryImage: {
     width: "100%",
-    height: 175,
-    borderRadius: 10,
+    height: "100%",
+  },
+
+  overlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(0,0,0,0.35)",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   categoryTitle: {
-    fontSize: 15,
+    color: "white",
+    fontSize: 20,
     fontWeight: "bold",
-    marginTop: 5,
   },
 });

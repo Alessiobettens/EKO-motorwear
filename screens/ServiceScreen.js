@@ -18,6 +18,16 @@ export default function ServiceScreen() {
         </Text>
       </View>
 
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>🚚 Levering & Verzending</Text>
+
+        <Text>
+          ✓ Snelle levering{"\n"}✓ Veilige verzending{"\n"}✓ Levering binnen
+          België
+        </Text>
+      </View> 
+
+
     </ScrollView>
   );
 }

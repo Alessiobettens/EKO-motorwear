@@ -39,7 +39,14 @@ export default function ServiceScreen() {
         <Text>Wettelijke garantie op alle producten.</Text>
       </View>
 
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>❓ Veelgestelde vragen</Text>
 
+        <Text>
+          Hoe kies ik de juiste helmmaat?{"\n\n"}
+          Raadpleeg de maattabel of vraag advies in de winkel.
+        </Text>
+      </View>
 
     </ScrollView>
   );

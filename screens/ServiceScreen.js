@@ -27,6 +27,19 @@ export default function ServiceScreen() {
         </Text>
       </View> 
 
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>🔄 Retourbeleid</Text>
+
+        <Text>Retour mogelijk binnen 14 dagen na ontvangst.</Text>
+      </View>
+
+       <View style={styles.card}>
+        <Text style={styles.cardTitle}>🛡️ Garantie</Text>
+
+        <Text>Wettelijke garantie op alle producten.</Text>
+      </View>
+
+
 
     </ScrollView>
   );

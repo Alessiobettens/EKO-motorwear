@@ -148,7 +148,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   hero: {
     width: "100%",
-    height: 250,
+    height: 230,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "bold",
     color: "white",
+    marginTop: 20,
   },
 
   subtitle: {
@@ -209,7 +210,9 @@ const styles = StyleSheet.create({
 
   infoSection: {
     backgroundColor: "#3a3737",
-    margin: 15,
+    marginTop: 25,
+    marginRight: 10,
+    marginLeft: 10,
     padding: 20,
     borderRadius: 10,
   },
@@ -219,7 +222,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 15,
   },
 
   infoSubtitle: {
@@ -227,7 +230,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#efd541",
     textAlign: "center",
-    marginBottom: 15,
+    marginBottom: 20,
   },
 
   infoText: {
@@ -242,7 +245,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#efd541",
     textAlign: "center",
-    marginBottom: 10,
+    marginBottom: 15,
   },
 
   hoursText: {

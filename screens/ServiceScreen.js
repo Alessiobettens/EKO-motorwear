@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { Linking } from "react-native";
 
 export default function ServiceScreen() {
   return (
@@ -25,7 +26,7 @@ export default function ServiceScreen() {
           ✓ Snelle levering{"\n"}✓ Veilige verzending{"\n"}✓ Levering binnen
           België
         </Text>
-      </View> 
+      </View>
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>🔄 Retourbeleid</Text>
@@ -33,7 +34,7 @@ export default function ServiceScreen() {
         <Text>Retour mogelijk binnen 14 dagen na ontvangst.</Text>
       </View>
 
-       <View style={styles.card}>
+      <View style={styles.card}>
         <Text style={styles.cardTitle}>🛡️ Garantie</Text>
 
         <Text>Wettelijke garantie op alle producten.</Text>
@@ -48,6 +49,27 @@ export default function ServiceScreen() {
         </Text>
       </View>
 
+      <View style={styles.card}>
+        <Text style={styles.cardTitle}>📱 Volg ons</Text>
+
+        <Text
+          style={styles.linkInsta}
+          onPress={() =>
+            Linking.openURL("https://www.instagram.com/ekomotorwear")
+          }
+        >
+          Instagram
+        </Text>
+
+        <Text
+          style={styles.linkFacebook}
+          onPress={() =>
+            Linking.openURL("https://www.facebook.com/ekomotorwear")
+          }
+        >
+          Facebook
+        </Text>
+      </View>
     </ScrollView>
   );
 }
@@ -76,5 +98,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
-});
 
+  linkInsta: {
+    color: "#E4405F",
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+
+  linkFacebook: {
+    color: "#1877F2",
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+});

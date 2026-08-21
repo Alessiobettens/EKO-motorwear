@@ -38,18 +38,18 @@ export default function ProductDetailScreen({ route }) {
 
       <Text style={styles.title}>{product.fieldData.name}</Text>
 
-      <Text style={styles.price}>€ {price.toFixed(2)}</Text>
+      <Text style={styles.price}>€ {product.fieldData.prijs}</Text>
 
       <Text style={styles.description}>{product.fieldData.description}</Text>
 
       <View style={styles.counterContainer}>
-        <Pressable style={styles.button} onPress={decreaseQuantity}>
+        <Pressable style={styles.buttonNeg} onPress={decreaseQuantity}>
           <Text style={styles.buttonText}>-</Text>
         </Pressable>
 
         <Text style={styles.quantity}>{quantity}</Text>
 
-        <Pressable style={styles.button} onPress={increaseQuantity}>
+        <Pressable style={styles.buttonPos} onPress={increaseQuantity}>
           <Text style={styles.buttonText}>+</Text>
         </Pressable>
       </View>
@@ -71,6 +71,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 300,
     resizeMode: "contain",
+    borderRadius: 10,
+    backgroundColor: "#ffffff",
   },
 
   title: {
@@ -80,9 +82,15 @@ const styles = StyleSheet.create({
   },
 
   price: {
-    fontSize: 20,
-    color: "green",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "black",
     marginTop: 10,
+    backgroundColor: "#efd541",
+    borderRadius: 5,
+    alignSelf: "flex-start",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 
   description: {
@@ -97,8 +105,17 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
 
-  button: {
-    backgroundColor: "#ff6600",
+  buttonNeg: {
+    backgroundColor: "#f80505",
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+  },
+
+  buttonPos: {
+    backgroundColor: "#1fad17",
     width: 50,
     height: 50,
     justifyContent: "center",

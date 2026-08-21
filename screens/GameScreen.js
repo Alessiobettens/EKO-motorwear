@@ -1,9 +1,12 @@
-import { View, Text } from "react-native";
+import React from "react";
+import { WebView } from "react-native-webview";
 
 export default function GameScreen() {
   return (
-    <View>
-      <Text>Game Screen</Text>
-    </View>
+    <WebView
+      source={{
+        uri: "https://ubiquitous-sable-590fff.netlify.app/",
+      }}
+    />
   );
 }

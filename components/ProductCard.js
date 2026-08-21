@@ -38,8 +38,14 @@ const styles = StyleSheet.create({
   },
 
   price: {
-    color: "green",
-    fontSize: 16,
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "black",
     marginTop: 5,
+    backgroundColor: "#efd541",
+    borderRadius: 5,
+    alignSelf: "flex-start",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
   },
 });
